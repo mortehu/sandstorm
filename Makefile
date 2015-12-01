@@ -30,10 +30,10 @@ PARALLEL=$(shell nproc)
 #   just accept it? Perhaps it's for the best since we probably should build
 #   position-independent executables for security reasons?
 METEOR_DEV_BUNDLE=$(shell ./find-meteor-dev-bundle.sh)
-NODEJS=$(METEOR_DEV_BUNDLE)/bin/node
-NODE_HEADERS=$(METEOR_DEV_BUNDLE)/include/node
+NODEJS=/usr/bin/nodejs
+NODE_HEADERS=/usr/include/nodejs/src
 WARNINGS=-Wall -Wextra -Wglobal-constructors -Wno-sign-compare -Wno-unused-parameter
-CXXFLAGS2=-std=c++1y $(WARNINGS) $(CXXFLAGS) -DSANDSTORM_BUILD=$(BUILD) -pthread -fPIC -I$(NODE_HEADERS)
+CXXFLAGS2=-std=c++1y $(WARNINGS) $(CXXFLAGS) -DSANDSTORM_BUILD=$(BUILD) -pthread -fPIC -I$(NODE_HEADERS) -I/usr/include/nodejs/deps/v8/include
 LIBS=-pthread
 
 define color
